@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Brief inicial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap" rel="stylesheet">
+<style>
+/* Layout: one reading column for a phone held in hand; each question is a tappable row that can be marked as answered. */
+:root {
+  --bg: #f2f4f3;
+  --surface: #ffffff;
+  --ink: #18221f;
+  --muted: #5b6a65;
+  --line: #d9e0dd;
+  --accent: #2f6b57;
+  --accent-soft: #e2eee9;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111715; --surface: #1a2320; --ink: #e8efec; --muted: #9aaba5;
+    --line: #2c3833; --accent: #7cc4a8; --accent-soft: #1f312a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111715; --surface: #1a2320; --ink: #e8efec; --muted: #9aaba5;
+  --line: #2c3833; --accent: #7cc4a8; --accent-soft: #1f312a; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 18px/1.55 var(--font-body);
+  padding: env(safe-area-inset-top, 0px) 16px calc(env(safe-area-inset-bottom, 0px) + 48px);
+}
+main { max-width: 38rem; margin: 0 auto; display: grid; gap: 28px; padding-block: 28px; }
+
+header { display: grid; gap: 10px; }
+.eyebrow { font: 700 13px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+h1 { font: 700 2.1rem/1.1 var(--font-display); margin: 0; text-wrap: balance; }
+.lead { margin: 0; color: var(--muted); }
+
+.howto { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 12px; }
+.howto h2 { font: 700 1.05rem/1.2 var(--font-display); margin: 0; }
+.howto ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
+.howto p { margin: 0; color: var(--muted); font-size: 16px; }
+
+.progress { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2; background: var(--bg); padding-block: 10px; display: grid; gap: 6px; }
+.progress-text { font-size: 15px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.bar { height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; }
+.bar span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s ease; }
+
+section.block { display: grid; gap: 10px; }
+section.block h2 { font: 700 1.3rem/1.2 var(--font-display); margin: 0; }
+section.block .tag { font: 700 13px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+
+ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.q {
+  display: grid; grid-template-columns: 2.2rem 1fr; gap: 12px; align-items: start;
+  width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px;
+}
+.q:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.num {
+  width: 2.2rem; height: 2.2rem; border-radius: 50%; display: grid; place-items: center;
+  font: 700 15px/1 var(--font-body); font-variant-numeric: tabular-nums;
+  background: var(--accent-soft); color: var(--accent);
+}
+.q small { display: block; color: var(--muted); font-size: 15px; margin-top: 4px; }
+.q[aria-pressed="true"] { border-color: var(--accent); }
+.q[aria-pressed="true"] .num { background: var(--accent); color: var(--surface); }
+.q[aria-pressed="true"] .num::before { content: "✓"; }
+.q[aria-pressed="true"] .num span { display: none; }
+.q[aria-pressed="true"] .text { color: var(--muted); }
+
+.reset { justify-self: start; background: none; border: 0; padding: 8px 0; color: var(--muted); font: inherit; font-size: 15px; text-decoration: underline; cursor: pointer; }
+footer { color: var(--muted); font-size: 15px; }
+
+@media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="eyebrow">Para tus dos proyectos</span>
+    <h1>Brief inicial</h1>
+    <p class="lead">Ordenar en un solo lugar lo que querés construir, para decidir juntos por dónde empezar.</p>
+  </header>
+
+  <div class="howto">
+    <h2>Cómo lo vamos a usar</h2>
+    <ul>
+      <li>Leés cada pregunta desde acá y me contás. Lo recorremos de a poco, en varias sesiones.</li>
+      <li>No hay respuestas correctas. "No sé" también es una respuesta útil.</li>
+      <li>Tocá una pregunta para marcarla como charlada. Solo queda marcada en este teléfono.</li>
+    </ul>
+    <p><strong>Sobre tu información:</strong> las notas y las grabaciones (solo si me autorizás a grabar) las guardo yo, de forma privada, y las uso solo para trabajar en tus proyectos. Para transcribir y ordenar lo que charlamos puedo usar herramientas digitales, incluida inteligencia artificial. Si alguna vez quisiera mostrar algo de este trabajo como ejemplo, te lo voy a pedir aparte y vas a poder revisarlo antes.</p>
+  </div>
+
+  <div class="progress" aria-live="polite">
+    <span class="progress-text" id="progress-text">0 de 20 charladas</span>
+    <div class="bar" aria-hidden="true"><span id="progress-bar"></span></div>
+  </div>
+
+  <div id="blocks"></div>
+
+  <button type="button" class="reset" id="reset">Desmarcar todas</button>
+  <footer>Las preguntas no se envían a ningún lado: esta página solo sirve para leerlas.</footer>
+</main>
+
+<script>
+const BLOCKS = [
+  { title: "Dónde estás hoy", questions: [
+    ["¿Qué estás haciendo actualmente en lo laboral?"],
+    ["¿Qué querés crear?", "Contalo con tus palabras, aunque esté desordenado."],
+    ["¿Por qué ahora? ¿Qué te impulsa a hacerlo?"] ] },
+  { title: "Hacia dónde vas", questions: [
+    ["Si dentro de un año esto funciona bien, ¿cómo es tu semana? ¿Qué estás haciendo?"],
+    ["¿Qué parte de todo esto te entusiasma más?"],
+    ["¿Qué parte te genera dudas o miedo?"] ] },
+  { title: "Vos", questions: [
+    ["¿Qué sabés hacer muy bien?", "Formación, experiencia, lo que te sale natural."],
+    ["¿Qué recursos ya tenés?", "Contactos, tiempo, herramientas, ahorros, experiencia previa."],
+    ["¿Qué cosas no querés hacer, o qué límites querés cuidar?"] ] },
+  { tag: "Proyecto A", title: "Consultoría y capacitación", questions: [
+    ["¿A quién te imaginás ayudando?", "Describí a una persona o empresa concreta."],
+    ["¿Qué necesidad creés que tiene esa persona? ¿En qué te basás para pensarlo?"],
+    ["¿Qué le entregarías concretamente?", "Una charla, un taller, un acompañamiento, un plan…"],
+    ["¿Ya hiciste algo parecido para alguien?"] ] },
+  { tag: "Proyecto B", title: "Eventos", questions: [
+    ["¿Qué tipo de eventos te gustaría hacer?", "Sociales, empresariales, institucionales, otros."],
+    ["¿Para quién? ¿Quién te contrataría?"],
+    ["¿Ya organizaste alguno? ¿Qué salió bien y qué aprendiste?"],
+    ["¿Con quién trabajarías?", "Proveedores, socios, equipo."] ] },
+  { title: "Para cerrar", questions: [
+    ["¿Qué señales tenés hoy de que alguien quiere lo que vas a ofrecer, o pagaría por eso?", "En cualquiera de los dos proyectos. Si todavía no hay, ¿con quién podrías hablar esta semana para averiguarlo?"],
+    ["¿Por cuál de los dos proyectos te gustaría empezar a ver resultados primero? ¿Por qué?"],
+    ["Dentro de 3 meses, ¿qué tendría que haber pasado para que digas \"esto funcionó\"?"] ] }
+];
+const STORAGE_KEY = "brief-inicial-charladas";
+const TOTAL = BLOCKS.reduce((sum, block) => sum + block.questions.length, 0);
+
+function loadAnswered() {
+  try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")); }
+  catch { return new Set(); }
+}
+function saveAnswered(answered) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...answered])); } catch {}
+}
+
+const answered = loadAnswered();
+
+function renderProgress() {
+  document.getElementById("progress-text").textContent = `${answered.size} de ${TOTAL} charladas`;
+  document.getElementById("progress-bar").style.width = `${(answered.size / TOTAL) * 100}%`;
+}
+
+function renderBlocks() {
+  const container = document.getElementById("blocks");
+  container.style.display = "grid";
+  container.style.gap = "28px";
+  let number = 0;
+  for (const block of BLOCKS) {
+    const section = document.createElement("section");
+    section.className = "block";
+    if (block.tag) section.insertAdjacentHTML("beforeend", `<span class="tag">${block.tag}</span>`);
+    section.insertAdjacentHTML("beforeend", `<h2>${block.title}</h2>`);
+    const list = document.createElement("ol");
+    for (const [text, hint] of block.questions) {
+      number += 1;
+      const id = String(number);
+      const item = document.createElement("li");
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "q";
+      button.id = `q${id}`;
+      button.setAttribute("aria-pressed", answered.has(id) ? "true" : "false");
+      button.innerHTML = `<span class="num" aria-hidden="true"><span>${id}</span></span>` +
+        `<span class="text">${text}${hint ? `<small>${hint}</small>` : ""}</span>`;
+      button.addEventListener("click", () => {
+        if (answered.has(id)) answered.delete(id); else answered.add(id);
+        button.setAttribute("aria-pressed", answered.has(id) ? "true" : "false");
+        saveAnswered(answered);
+        renderProgress();
+      });
+      item.append(button);
+      list.append(item);
+    }
+    section.append(list);
+    container.append(section);
+  }
+}
+
+document.getElementById("reset").addEventListener("click", () => {
+  answered.clear();
+  saveAnswered(answered);
+  document.querySelectorAll(".q").forEach(button => button.setAttribute("aria-pressed", "false"));
+  renderProgress();
+});
+
+renderBlocks();
+renderProgress();
+</script>
+</body>
+</html>
