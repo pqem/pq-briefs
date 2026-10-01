@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
-<title>Brief inicial</title>
+<meta name="referrer" content="no-referrer">
+<title>Brief de proyectos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&display=swap" rel="stylesheet">
@@ -50,17 +51,22 @@ h1 { font: 700 2.1rem/1.1 var(--font-display); margin: 0; text-wrap: balance; }
 .lead { margin: 0; color: var(--muted); }
 
 .howto { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 18px; display: grid; gap: 12px; }
-.howto h2 { font: 700 1.05rem/1.2 var(--font-display); margin: 0; }
+.howto h2 { font: 700 1.3rem/1.2 var(--font-display); margin: 0; }
 .howto ul { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; }
 .howto p { margin: 0; color: var(--muted); font-size: 16px; }
 
 .progress { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 2; background: var(--bg); padding-block: 10px; display: grid; gap: 6px; }
 .progress-text { font-size: 15px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .bar { height: 6px; border-radius: 99px; background: var(--line); overflow: hidden; }
-.bar span { display: block; height: 100%; width: 0; background: var(--accent); transition: width .25s ease; }
+.bar span { display: block; height: 100%; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s ease; }
+
+.part { display: grid; gap: 28px; padding-top: 12px; border-top: 2px solid var(--line); }
+.part-head { display: grid; gap: 8px; }
+.part-head h2 { font: 700 1.7rem/1.15 var(--font-display); margin: 0; }
+.part-head p { margin: 0; color: var(--muted); }
 
 section.block { display: grid; gap: 10px; }
-section.block h2 { font: 700 1.3rem/1.2 var(--font-display); margin: 0; }
+section.block h3 { font: 700 1.3rem/1.2 var(--font-display); margin: 0; }
 section.block .tag { font: 700 13px/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 
 ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
@@ -69,129 +75,219 @@ ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
   width: 100%; text-align: left; font: inherit; color: inherit; cursor: pointer;
   background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px;
 }
-.q:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.q:focus-visible, .switch button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .num {
   width: 2.2rem; height: 2.2rem; border-radius: 50%; display: grid; place-items: center;
   font: 700 15px/1 var(--font-body); font-variant-numeric: tabular-nums;
   background: var(--accent-soft); color: var(--accent);
 }
 .q small { display: block; color: var(--muted); font-size: 15px; margin-top: 4px; }
+.core { display: block; font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 4px; }
 .q[aria-pressed="true"] { border-color: var(--accent); }
 .q[aria-pressed="true"] .num { background: var(--accent); color: var(--surface); }
 .q[aria-pressed="true"] .num::before { content: "✓"; }
 .q[aria-pressed="true"] .num span { display: none; }
 .q[aria-pressed="true"] .text { color: var(--muted); }
 
-.reset { justify-self: start; background: none; border: 0; padding: 8px 0; color: var(--muted); font: inherit; font-size: 15px; text-decoration: underline; cursor: pointer; }
+.switch { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.switch button {
+  font: inherit; font-size: 16px; color: var(--ink); cursor: pointer; text-align: left;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px;
+}
+.switch button strong { display: block; }
+.switch button[aria-pressed="true"] { border: 2px solid var(--accent); background: var(--accent-soft); }
+.focus { margin: 0; padding: 14px 16px; border-radius: 12px; background: var(--accent-soft); font-size: 16px; }
+
+.actions { display: flex; gap: 20px; flex-wrap: wrap; }
+.reset { background: none; border: 0; padding: 8px 0; color: var(--muted); font: inherit; font-size: 15px; text-decoration: underline; cursor: pointer; }
+.reset:disabled { opacity: .55; cursor: default; }
+.notice { margin: 0; font-size: 15px; color: var(--muted); }
 footer { color: var(--muted); font-size: 15px; }
 
 @media (prefers-reduced-motion: reduce) { .bar span { transition: none; } }
+@media print { .progress, .actions, .switch { display: none; } .q { break-inside: avoid; } body { background: white; color: black; } }
 </style>
 </head>
 <body>
 <main>
   <header>
-    <span class="eyebrow">Para tus dos proyectos</span>
-    <h1>Brief inicial</h1>
-    <p class="lead">Ordenar en un solo lugar lo que querés construir, para decidir juntos por dónde empezar.</p>
+    <span class="eyebrow">Consultoría y capacitación · Eventos</span>
+    <h1>Brief de proyectos</h1>
+    <p class="lead">Ordenar en un solo lugar lo que querés construir y llevar cada proyecto hasta una primera prueba concreta.</p>
   </header>
 
   <div class="howto">
     <h2>Cómo lo vamos a usar</h2>
     <ul>
+      <li><strong>Parte 1 · Diagnóstico inicial:</strong> tu situación y los dos proyectos. Se recorre una sola vez.</li>
+      <li><strong>Parte 2 · Plan de validación:</strong> la hacemos una vez para cada proyecto, empezando por el que elijas al final de la Parte 1.</li>
       <li>Leés cada pregunta desde acá y me contás. Lo recorremos de a poco, en varias sesiones.</li>
-      <li>No hay respuestas correctas. "No sé" también es una respuesta útil.</li>
-      <li>Tocá una pregunta para marcarla como charlada. Solo queda marcada en este teléfono.</li>
+      <li>No hay respuestas correctas. "Todavía no sé" también es útil: nos dice qué averiguar.</li>
+      <li>Tocá una pregunta para marcarla como charlada. Solo queda marcada en este teléfono y no significa que haya una decisión tomada.</li>
     </ul>
-    <p><strong>Sobre tu información:</strong> las notas y las grabaciones (solo si me autorizás a grabar) las guardo yo, de forma privada, y las uso solo para trabajar en tus proyectos. Para transcribir y ordenar lo que charlamos puedo usar herramientas digitales, incluida inteligencia artificial. Si alguna vez quisiera mostrar algo de este trabajo como ejemplo, te lo voy a pedir aparte y vas a poder revisarlo antes.</p>
+    <p><strong>Sobre tu información:</strong> esta página no recoge respuestas ni graba audio. Las notas y las grabaciones (solo si me autorizás a grabar) las guardo yo, de forma privada, y las uso solo para trabajar en tus proyectos. Para transcribir y ordenar lo que charlamos puedo usar herramientas digitales, incluida inteligencia artificial. Si alguna vez quisiera mostrar algo de este trabajo como ejemplo, te lo voy a pedir aparte y vas a poder revisarlo antes.</p>
   </div>
 
   <div class="progress" aria-live="polite">
-    <span class="progress-text" id="progress-text">0 de 20 charladas</span>
+    <span class="progress-text" id="progress-text"></span>
     <div class="bar" aria-hidden="true"><span id="progress-bar"></span></div>
   </div>
 
-  <div id="blocks"></div>
+  <div class="part">
+    <div class="part-head">
+      <span class="eyebrow">Parte 1</span>
+      <h2>Diagnóstico inicial</h2>
+      <p>Dónde estás hoy, qué querés construir y con qué contás, para los dos proyectos.</p>
+    </div>
+    <div id="part1" style="display:grid;gap:28px"></div>
+    <div class="actions">
+      <button type="button" class="reset" data-reset="inicial">Desmarcar la Parte 1</button>
+    </div>
+  </div>
 
-  <button type="button" class="reset" id="reset">Desmarcar todas</button>
-  <footer>Las preguntas no se envían a ningún lado: esta página solo sirve para leerlas.</footer>
+  <div class="part">
+    <div class="part-head">
+      <span class="eyebrow">Parte 2</span>
+      <h2>Plan de validación</h2>
+      <p>Elegir una oportunidad, darle forma y acordar cómo averiguar si vale la pena seguir. Las mismas preguntas, una vez por proyecto. En 15–30 minutos podemos recorrer un bloque o solo las 6 marcadas «Recorrido corto».</p>
+    </div>
+    <div class="switch" role="group" aria-label="Proyecto que estamos trabajando">
+      <button type="button" data-project="a" aria-pressed="true"><strong>Proyecto A</strong>Consultoría y capacitación</button>
+      <button type="button" data-project="b" aria-pressed="false"><strong>Proyecto B</strong>Eventos</button>
+    </div>
+    <p class="focus" id="project-hint"></p>
+    <div id="part2" style="display:grid;gap:28px"></div>
+    <div class="howto">
+      <h2>Lo que nos llevamos de cada proyecto</h2>
+      <p>Una oportunidad elegida, un cliente o situación concreta, una prueba con límites y un próximo paso acordado. Lo que falte saber queda abierto, sin inventar respuestas.</p>
+    </div>
+    <div class="actions">
+      <button type="button" class="reset" id="reset-project">Desmarcar este proyecto</button>
+    </div>
+  </div>
+
+  <div class="actions">
+    <button type="button" class="reset" id="undo" disabled>Recuperar las marcas que borré</button>
+  </div>
+  <p class="notice" id="storage-status" role="status"></p>
+  <noscript><p>Para ver las preguntas y marcarlas necesitás JavaScript activado.</p></noscript>
+  <footer>Solo preguntas, sin respuestas ni nombres. Esta página no envía datos a ningún lado.</footer>
 </main>
 
 <script>
-const BLOCKS = [
-  { title: "Dónde estás hoy", questions: [
-    ["¿Qué estás haciendo actualmente en lo laboral?"],
-    ["¿Qué querés crear?", "Contalo con tus palabras, aunque esté desordenado."],
-    ["¿Por qué ahora? ¿Qué te impulsa a hacerlo?"] ] },
-  { title: "Hacia dónde vas", questions: [
-    ["Si dentro de un año esto funciona bien, ¿cómo es tu semana? ¿Qué estás haciendo?"],
-    ["¿Qué parte de todo esto te entusiasma más?"],
-    ["¿Qué parte te genera dudas o miedo?"] ] },
-  { title: "Vos", questions: [
-    ["¿Qué sabés hacer muy bien?", "Formación, experiencia, lo que te sale natural."],
-    ["¿Qué recursos ya tenés?", "Contactos, tiempo, herramientas, ahorros, experiencia previa."],
-    ["¿Qué cosas no querés hacer, o qué límites querés cuidar?"] ] },
+'use strict';
+// Part 1 ids keep the numbering of the first published version (20 questions) so marks already saved on the client's phone survive; old 18 and 20 were folded into Part 2.
+const PART1 = [
+  { title: "Situación actual", questions: [
+    ["1", "¿Qué estás haciendo actualmente en lo laboral?"],
+    ["2", "¿Qué querés crear?", "Contalo con tus palabras, aunque esté desordenado."],
+    ["3", "¿Por qué ahora? ¿Qué te impulsa a hacerlo?"] ] },
+  { title: "Objetivos", questions: [
+    ["4", "Si dentro de un año esto funciona bien, ¿cómo es tu semana? ¿Qué estás haciendo?"],
+    ["5", "¿Qué parte de todo esto te entusiasma más?"],
+    ["6", "¿Qué parte te genera dudas o miedo?"] ] },
+  { title: "Perfil y recursos", questions: [
+    ["7", "¿Qué sabés hacer muy bien?", "Formación, experiencia, lo que te sale natural."],
+    ["8", "¿Qué recursos ya tenés?", "Contactos, tiempo, herramientas, ahorros, experiencia previa."],
+    ["9", "¿Qué cosas no querés hacer, o qué límites querés cuidar?"] ] },
   { tag: "Proyecto A", title: "Consultoría y capacitación", questions: [
-    ["¿A quién te imaginás ayudando?", "Describí a una persona o empresa concreta."],
-    ["¿Qué necesidad creés que tiene esa persona? ¿En qué te basás para pensarlo?"],
-    ["¿Qué le entregarías concretamente?", "Una charla, un taller, un acompañamiento, un plan…"],
-    ["¿Ya hiciste algo parecido para alguien?"] ] },
+    ["10", "¿A quién te imaginás ayudando?", "Describí a una persona o empresa concreta."],
+    ["11", "¿Qué necesidad creés que tiene esa persona? ¿En qué te basás para pensarlo?"],
+    ["12", "¿Qué le entregarías concretamente?", "Una charla, un taller, un acompañamiento, un plan…"],
+    ["13", "¿Ya hiciste algo parecido para alguien?"] ] },
   { tag: "Proyecto B", title: "Eventos", questions: [
-    ["¿Qué tipo de eventos te gustaría hacer?", "Sociales, empresariales, institucionales, otros."],
-    ["¿Para quién? ¿Quién te contrataría?"],
-    ["¿Ya organizaste alguno? ¿Qué salió bien y qué aprendiste?"],
-    ["¿Con quién trabajarías?", "Proveedores, socios, equipo."] ] },
-  { title: "Para cerrar", questions: [
-    ["¿Qué señales tenés hoy de que alguien quiere lo que vas a ofrecer, o pagaría por eso?", "En cualquiera de los dos proyectos. Si todavía no hay, ¿con quién podrías hablar esta semana para averiguarlo?"],
-    ["¿Por cuál de los dos proyectos te gustaría empezar a ver resultados primero? ¿Por qué?"],
-    ["Dentro de 3 meses, ¿qué tendría que haber pasado para que digas \"esto funcionó\"?"] ] }
+    ["14", "¿Qué tipo de eventos te gustaría hacer?", "Sociales, empresariales, institucionales, otros."],
+    ["15", "¿Para quién? ¿Quién te contrataría?"],
+    ["16", "¿Ya organizaste alguno? ¿Qué salió bien y qué aprendiste?"],
+    ["17", "¿Con quién trabajarías?", "Proveedores, socios, equipo."] ] },
+  { title: "Prioridad", questions: [
+    ["19", "¿Por cuál de los dos proyectos te gustaría empezar a ver resultados primero? ¿Por qué?", "Con ese arrancamos la Parte 2; después hacemos lo mismo con el otro."] ] }
 ];
-const STORAGE_KEY = "brief-inicial-charladas";
-const TOTAL = BLOCKS.reduce((sum, block) => sum + block.questions.length, 0);
 
-function loadAnswered() {
-  try { return new Set(JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]")); }
-  catch { return new Set(); }
-}
-function saveAnswered(answered) {
-  try { localStorage.setItem(STORAGE_KEY, JSON.stringify([...answered])); } catch {}
-}
+const PART2 = [
+  { title: "Elegir una oportunidad", questions: [
+    ["foco", "¿Qué oportunidad concreta vale la pena probar primero en este proyecto?", "Partí de lo que charlamos en la Parte 1. ¿Qué dato la sostiene y qué sigue siendo una suposición?", true],
+    ["comparar", "¿Qué otra opción dejarías para después y por qué?", "Compará qué tan importante es para alguien, qué acceso tenés a esa persona y cuánto te costaría probarla."],
+    ["cambiar", "¿Qué tendrías que descubrir para cambiar esa elección?", "Busquemos también algo que pueda mostrar que esta idea no conviene."] ] },
+  { title: "Entender una situación real", questions: [
+    ["situacion", "Pensá en una persona u organización que podría necesitar esto: ¿cuándo le pasó por última vez?", "Reconstruí un caso: qué ocurrió, cómo lo resolvió y qué quedó pendiente. Si no conocés un caso, lo dejamos por averiguar.", true],
+    ["alternativa", "¿Qué hace hoy para resolverlo y qué le cuesta seguir así?", "Tiempo, dinero o una dificultad concreta. Separá lo que viste o te dijeron de lo que imaginás."],
+    ["decision", "¿Quién lo usaría, quién decidiría contratar y quién pagaría?", "Pueden ser personas distintas. ¿Cómo podrías conversar con quien toma la decisión?"] ] },
+  { title: "Darle forma a algo pequeño", questions: [
+    ["oferta", "¿Qué resultado concreto podrías ayudar a conseguir en una primera prueba?", "Completá: para este tipo de cliente, en esta situación, haríamos esto y al terminar tendría esto otro.", true],
+    ["alcance", "¿Qué incluiría esa prueba y qué quedaría afuera?", "Acordemos entrega, duración, participación del cliente y cómo se daría por terminada. Solo lo que dependa de vos."],
+    ["precio", "¿Qué necesitarías saber para ponerle un precio y comprobar si alguien lo pagaría?", "Tiempo de preparación y entrega, gastos y terceros. Un elogio o interés general todavía no confirma una compra."] ] },
+  { title: "Cuidar la forma de hacerlo", questions: [
+    ["limites", "¿Con cuánto tiempo y dinero podrías probar sin complicarte?", "Poné un máximo para esta prueba. ¿Qué no vas a comprometer y qué te haría frenarla?", true],
+    ["dependencias", "¿Qué parte podés resolver hoy y cuál depende de otra persona?", "Confirmemos disponibilidad y costos antes de prometer. Si esa ayuda falla, ¿se puede achicar la prueba?"],
+    ["riesgo", "¿Qué podría salir mal para vos o para el cliente, y cómo lo evitaríamos?", "Pensá en calidad, cambios, cancelaciones y datos privados. Si el riesgo no se puede cuidar, cambiemos la prueba."] ] },
+  { title: "Acordar qué vamos a aprender", questions: [
+    ["prueba", "¿Cuál es la acción más pequeña que nos daría una respuesta real?", "Puede ser una conversación, mostrar una propuesta o una prueba acotada. Elegí según lo que todavía no sabemos, sin gastar ni prometer de más.", true],
+    ["evidencia", "¿Qué tendría que pasar para seguir, ajustar o dejar esta idea?", "Antes de empezar, elegí una señal observable y un umbral: qué respuesta o acción esperaríamos, de quién y para cuándo."],
+    ["paso", "¿Quién hace el próximo paso, cuándo lo revisamos y qué va a traer?", "Una acción, una persona responsable, una fecha acordada y una evidencia. Si falta una decisión, anotemos cuál y quién la toma.", true] ] }
+];
 
-const answered = loadAnswered();
+const PROJECT_HINTS = {
+  a: "Consultoría y capacitación: distingamos quién recibe la ayuda de quien la contrata. El resultado puede ser una decisión, una habilidad o un cambio concreto que podamos comprobar.",
+  b: "Eventos: precisemos ocasión, objetivo y quién contrata. Antes de reservar fechas o proveedores, averigüemos condiciones y responsabilidades. La primera prueba también puede ocurrir antes del evento."
+};
+
+const STORAGE_KEYS = { inicial: "brief-inicial-charladas", a: "brief-2-prueba-v1-a", b: "brief-2-prueba-v1-b" };
+const idsOf = blocks => new Set(blocks.flatMap(block => block.questions.map(q => q[0])));
+const VALID = { inicial: idsOf(PART1), a: idsOf(PART2), b: idsOf(PART2) };
+const marks = {};
+let project = "a";
+let lastReset = null;
+const storageStatus = document.getElementById("storage-status");
+
+function load(scope) {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(STORAGE_KEYS[scope]) || "[]");
+    marks[scope] = new Set(Array.isArray(parsed) ? parsed.filter(id => VALID[scope].has(id)) : []);
+  } catch {
+    marks[scope] = new Set();
+    storageStatus.textContent = "No se pudieron recuperar las marcas guardadas. Podés seguir usando el brief igual.";
+  }
+}
+function save(scope) {
+  try { localStorage.setItem(STORAGE_KEYS[scope], JSON.stringify([...marks[scope]])); }
+  catch { storageStatus.textContent = "Este navegador no permite guardar las marcas: se conservan solo mientras la página siga abierta."; }
+}
 
 function renderProgress() {
-  document.getElementById("progress-text").textContent = `${answered.size} de ${TOTAL} charladas`;
-  document.getElementById("progress-bar").style.width = `${(answered.size / TOTAL) * 100}%`;
+  const counts = ["inicial", "a", "b"].map(scope => marks[scope].size);
+  const totals = [VALID.inicial.size, VALID.a.size, VALID.b.size];
+  document.getElementById("progress-text").textContent =
+    `Parte 1: ${counts[0]}/${totals[0]} · Proyecto A: ${counts[1]}/${totals[1]} · Proyecto B: ${counts[2]}/${totals[2]}`;
+  const done = counts.reduce((a, b) => a + b, 0);
+  const total = totals.reduce((a, b) => a + b, 0);
+  document.getElementById("progress-bar").style.transform = `scaleX(${done / total})`;
+  document.getElementById("undo").disabled = lastReset === null;
 }
 
-function renderBlocks() {
-  const container = document.getElementById("blocks");
-  container.style.display = "grid";
-  container.style.gap = "28px";
+function buildPart(container, blocks, scopeOf) {
   let number = 0;
-  for (const block of BLOCKS) {
+  for (const block of blocks) {
     const section = document.createElement("section");
     section.className = "block";
     if (block.tag) section.insertAdjacentHTML("beforeend", `<span class="tag">${block.tag}</span>`);
-    section.insertAdjacentHTML("beforeend", `<h2>${block.title}</h2>`);
+    section.insertAdjacentHTML("beforeend", `<h3>${block.title}</h3>`);
     const list = document.createElement("ol");
-    for (const [text, hint] of block.questions) {
+    for (const [id, text, hint, core] of block.questions) {
       number += 1;
-      const id = String(number);
-      const item = document.createElement("li");
       const button = document.createElement("button");
       button.type = "button";
       button.className = "q";
-      button.id = `q${id}`;
-      button.setAttribute("aria-pressed", answered.has(id) ? "true" : "false");
-      button.innerHTML = `<span class="num" aria-hidden="true"><span>${id}</span></span>` +
-        `<span class="text">${text}${hint ? `<small>${hint}</small>` : ""}</span>`;
+      button.dataset.id = id;
+      button.innerHTML = `<span class="num" aria-hidden="true"><span>${number}</span></span>` +
+        `<span class="text">${core ? '<span class="core">Recorrido corto</span>' : ""}${text}${hint ? `<small>${hint}</small>` : ""}</span>`;
       button.addEventListener("click", () => {
-        if (answered.has(id)) answered.delete(id); else answered.add(id);
-        button.setAttribute("aria-pressed", answered.has(id) ? "true" : "false");
-        saveAnswered(answered);
-        renderProgress();
+        const scope = scopeOf();
+        if (marks[scope].has(id)) marks[scope].delete(id); else marks[scope].add(id);
+        save(scope);
+        renderMarks();
       });
+      const item = document.createElement("li");
       item.append(button);
       list.append(item);
     }
@@ -200,15 +296,40 @@ function renderBlocks() {
   }
 }
 
-document.getElementById("reset").addEventListener("click", () => {
-  answered.clear();
-  saveAnswered(answered);
-  document.querySelectorAll(".q").forEach(button => button.setAttribute("aria-pressed", "false"));
+function renderMarks() {
+  for (const [containerId, scope] of [["part1", "inicial"], ["part2", project]]) {
+    document.querySelectorAll(`#${containerId} .q`).forEach(button =>
+      button.setAttribute("aria-pressed", String(marks[scope].has(button.dataset.id))));
+  }
+  document.getElementById("project-hint").textContent = PROJECT_HINTS[project];
+  document.getElementById("reset-project").textContent = `Desmarcar el Proyecto ${project.toUpperCase()}`;
+  document.querySelectorAll(".switch button").forEach(button =>
+    button.setAttribute("aria-pressed", String(button.dataset.project === project)));
   renderProgress();
-});
+}
 
-renderBlocks();
-renderProgress();
+function resetScope(scope) {
+  lastReset = { scope, ids: new Set(marks[scope]) };
+  marks[scope].clear();
+  save(scope);
+  renderMarks();
+}
+
+buildPart(document.getElementById("part1"), PART1, () => "inicial");
+buildPart(document.getElementById("part2"), PART2, () => project);
+document.querySelectorAll(".switch button").forEach(button =>
+  button.addEventListener("click", () => { project = button.dataset.project; renderMarks(); }));
+document.querySelector('[data-reset="inicial"]').addEventListener("click", () => resetScope("inicial"));
+document.getElementById("reset-project").addEventListener("click", () => resetScope(project));
+document.getElementById("undo").addEventListener("click", () => {
+  if (lastReset === null) return;
+  marks[lastReset.scope] = lastReset.ids;
+  save(lastReset.scope);
+  lastReset = null;
+  renderMarks();
+});
+for (const scope of Object.keys(STORAGE_KEYS)) load(scope);
+renderMarks();
 </script>
 </body>
 </html>
